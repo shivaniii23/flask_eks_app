@@ -7,7 +7,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/shivaniii23/flask-eks-app.git'
+        git 'https://github.com/shivaniii23/flask_eks_app.git'
       }
     }
     stage('Build Docker Image') {
