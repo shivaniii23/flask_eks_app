@@ -2,7 +2,7 @@ pipeline {
   agent any
   environment {
     AWS_DEFAULT_REGION = 'us-east-1'
-    ECR_REPO = '205930616561.dkr.ecr.us-east-1.amazonaws.com/flask-eks'
+    ECR_REPO = '205930616561.dkr.ecr.us-east-1.amazonaws.com'
   }
   stages {
     stage('Checkout') {
@@ -22,8 +22,8 @@ pipeline {
         script {
           sh '''
           aws ecr get-login-password --region $AWS_DEFAULT_REGION | echo $ECR_REPO |  docker login --username AWS --password-stdin 
-          docker tag flask-app:latest $ECR_REPO:latest
-          docker push $ECR_REPO:latest
+          docker tag flask-app:latest $ECR_REPO/flask-eks:latest
+          docker push $ECR_REPO/flask-eks:latest
           '''
         }
       }

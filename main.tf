@@ -11,8 +11,8 @@ module "eks" {
   version = "~> 21.0"
   name    = "flask-eks-cluster"
   kubernetes_version = "1.27"
-  subnet_ids         = ["subnet-xxxx", "subnet-yyyy"]
-  vpc_id          = "vpc-xxxx"
+  subnet_ids         = ["subnet-095034fe1ab67bcfd", "subnet-031397bfac02b26f3"]
+  vpc_id          = "vpc-0b1beb801f37a0470"
   enable_irsa     = true
 
   eks_managed_node_groups = {
@@ -20,11 +20,15 @@ module "eks" {
       desired_size = 2
       max_size     = 3
       min_size     = 1
-      instance_types    = "t3.medium"
+      instance_types    = ["t3.medium"]
     }
   }
 }
 
-output "kubeconfig" {
-  value = module.eks.kubeconfig
+output "cluster_name" {
+  value = module.eks.cluster_name
+}
+
+output "cluster_endpoint" {
+  value = module.eks.cluster_endpoint
 }
