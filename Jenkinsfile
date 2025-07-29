@@ -21,7 +21,7 @@ pipeline {
       steps {
         script {
           sh '''
-          echo $(aws ecr get-login-password --region $AWS_DEFAULT_REGION) | docker login --username AWS --password-stdin $ECR_REPO 
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 205930616561.dkr.ecr.us-east-1.amazonaws.com 
           docker tag flask-app:latest $ECR_REPO/flask-eks:latest
           docker push $ECR_REPO/flask-eks:latest
           '''
